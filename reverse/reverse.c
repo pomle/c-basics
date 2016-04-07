@@ -1,23 +1,19 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-char* reverse(char *str) {
+void reverse(char *str) {
   int i = -1, j = 0;
+  char c;
 
   while (str[++i] != '\0');
 
-  char *rev = malloc(i);
-
-  while (i != -1) {
-    rev[j++] = str[--i];
+  while (--i > j) {
+    c = str[i];
+    str[i] = str[j];
+    str[j++] = c;
   }
-  rev[j] = '\0';
-
-  return rev;
 }
 
 int main(int argc, char **argv) {
-  char *rev = reverse(argv[1]);
-  printf("Reversed: %s\n", rev);
-  free(rev);
+  reverse(argv[1]);
+  printf("%s\n", argv[1]);
 }
